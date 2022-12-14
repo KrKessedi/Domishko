@@ -1,8 +1,20 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import { Login, Register } from './components';
+import { WelcomePage } from './pages';
+
+const Container = styled.div``;
+
 function App() {
   return (
-    <div>
-      <h1>Library System</h1>
-    </div>
+    <Container>
+      <Routes>
+        <Route index element={<WelcomePage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Routes>
+    </Container>
   );
 }
 
