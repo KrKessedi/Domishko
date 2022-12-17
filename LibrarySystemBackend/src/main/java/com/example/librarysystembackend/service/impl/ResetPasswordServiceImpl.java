@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,6 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
 
     private final ResetPasswordRepo resetPasswordRepo;
     private final ResetPasswordMapper resetPasswordMapper;
-
 
     @Override
     public ResponseEntity<?> sendEmailToResetPassword(String email) {
@@ -54,6 +54,7 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
                 "Password successfully changed!","Greeting! You password is updated");
         return ResponseEntity.ok("Password successfully updated!");
     }
+
     public boolean isValid(ResetPassword resetPassword){
         ResetPassword link = resetPassword;
         if (link.getGenerationTime().plusHours(2).isBefore(LocalDateTime.now())) {
@@ -70,9 +71,8 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
     }
 
     private String createToken(String email) {
-        Random random = new Random();
-        int number = random.nextInt(1,9999);
-        String result =  number + email;
+        String token = UUID.randomUUID().toString();
+        String result =  token + email;
         return URLEncoder.encode(result);
     }
 }

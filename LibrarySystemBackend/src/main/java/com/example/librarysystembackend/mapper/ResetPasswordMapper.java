@@ -14,7 +14,7 @@ public class ResetPasswordMapper {
         return ResetPassword.builder()
                 .user(user)
                 .token(url)
-                .localDateTime(LocalDateTime.now())
+                .generationTime(LocalDateTime.now())
                 .build();
     }
 }
