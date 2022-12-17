@@ -2,6 +2,7 @@ package com.example.librarysystembackend.service.impl;
 
 import com.example.librarysystembackend.mapper.UserMapper;
 import com.example.librarysystembackend.module.entity.User;
+import com.example.librarysystembackend.module.enums.UserRole;
 import com.example.librarysystembackend.module.repository.UserRepo;
 import com.example.librarysystembackend.service.MailService;
 import com.example.librarysystembackend.service.UserService;
@@ -20,6 +21,8 @@ public class UserImpl implements UserService {
         User user = findUserByEmail(loginRequest.getEmail());
         if (!user.getPassword().equals(loginRequest.getPassword())){
             throw new RuntimeException("Password is incorrect!");
+        } else if (user.getRole().equals(UserRole.ADMIN)) {
+            throw new RuntimeException("To login allows for only user!");
         }
         return user;
     }

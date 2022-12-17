@@ -39,7 +39,7 @@ public class VerificationTokenServiceImpl implements VerificationTokenService {
         verificationTokenRepo.save(tokenVerifier);
         mailService.sendMessage(userRegisterRequest.getEmail(),"Verification of email",
                 "Here is the link to activate your account. Link will expire after 30 minutes \n" +
-                "http://localhost:8080/activatation/account" + token);
+                "http://localhost:8080/activatation/account/" + token);
         return ResponseEntity.ok("Message sent to activate your account");
     }
 

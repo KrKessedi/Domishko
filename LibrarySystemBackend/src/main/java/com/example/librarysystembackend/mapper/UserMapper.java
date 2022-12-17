@@ -17,4 +17,14 @@ public class UserMapper {
                 .status(false)
                 .build();
     }
+    public User toUserFromRegisterAdmin (UserRegisterRequest userRegisterRequest){
+        return User.builder()
+                .firstName(userRegisterRequest.getFirstName())
+                .lastName(userRegisterRequest.getLastName())
+                .email(userRegisterRequest.getEmail())
+                .password(userRegisterRequest.getPassword())
+                .role(UserRole.ADMIN)
+                .status(false)
+                .build();
+    }
 }
