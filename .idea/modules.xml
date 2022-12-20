@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LibrarySystem.iml" filepath="$PROJECT_DIR$/.idea/LibrarySystem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LibrarySystemBackend/LibrarySystemBackend.iml" filepath="$PROJECT_DIR$/LibrarySystemBackend/LibrarySystemBackend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Backend/Backend.iml" filepath="$PROJECT_DIR$/Backend/Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/librarySystemTest.iml" filepath="$PROJECT_DIR$/.idea/librarySystemTest.iml" />
     </modules>
   </component>
 </project>
