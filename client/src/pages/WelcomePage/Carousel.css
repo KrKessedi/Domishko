@@ -1,0 +1,33 @@
+.slide img {
+	width: 9em;
+	bottom: 0;
+}
+
+.slide {
+	transform: scale(0.7);
+	transition: transform 300ms;
+}
+
+.activeMidleSlide {
+	transform: scale(1);
+}
+
+.activeSlide {
+	transform: scale(1.2);
+}
+
+.arrow {
+	position: absolute;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.next {
+	right: 0;
+	top: 50%;
+}
+
+.prev {
+	left: 0;
+	top: 50%;
+}
