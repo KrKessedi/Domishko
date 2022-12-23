@@ -1,60 +1,23 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
-import {
-  Chart,
-  Login,
-  Register,
-  StaticBook,
-  StaticUsers,
-  CreateBook,
-} from './components';
-import { Admin, WelcomePage } from './pages';
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import MainRoutes from './MainRoutes'
+import styled from 'styled-components'
+import './App.css'
 
-const Container = styled.div``;
+const Container = styled.div`
+	width: 93%;
+	margin: 0 auto;
+	font-family: 'Inter', sans-serif;
+`
 
 function App() {
-  return (
-    <Container>
-      <Routes>
-        <Route index element={<WelcomePage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route
-          path="admin"
-          element={
-            <Admin>
-              <Chart />
-            </Admin>
-          }
-        />
-        <Route
-          path="admin/book"
-          element={
-            <Admin>
-              <StaticBook />
-            </Admin>
-          }
-        />
-        <Route
-          path="admin/users"
-          element={
-            <Admin>
-              <StaticUsers />
-            </Admin>
-          }
-        />
-        <Route
-          path="admin/createBook"
-          element={
-            <Admin>
-              <CreateBook />
-            </Admin>
-          }
-        />
-      </Routes>
-    </Container>
-  );
+	return (
+		<>
+			<Container>
+				<MainRoutes />
+			</Container>
+		</>
+	)
 }
 
-export default App;
+export default App
