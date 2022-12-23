@@ -65,7 +65,7 @@ const WelcomePage = () => {
 					</Text>
 					<Button>Смотреть</Button>
 				</Flex>
-				<Slider {...setting} style={{ width: '800px', margin: '2em auto 0' }}>
+				<Slider {...setting} style={{ width: '833px', margin: '1em 47px 0 0' }}>
 					{images.map((img, idx) => (
 						<div
 							key={idx}
