@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { userReq } from '../../redux/apiCalls';
 import {
   Items,
   List,
@@ -7,8 +8,21 @@ import {
   Select,
   Title,
 } from './StaticUsers.styled';
+import format from 'date-fns/format';
 
 const StaticUsers = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const res = await userReq.get('users/?new=true');
+        setUsers(res.data);
+      } catch {}
+    };
+    getUsers();
+  }, []);
+
   return (
     <>
       <Title>Пользователи</Title>
@@ -18,66 +32,20 @@ const StaticUsers = () => {
         <Option>Март</Option>
       </Select>
       <List>
-        <ListItem>
-          <Items className="first">Мышык Мышыкбеков</Items>
-          <Items className="first">5/09/21</Items>
-          <Items className="second" style={{ backgroundColor: '#FCB242' }}>
-            Заблокировать
-          </Items>
-          <Items className="second" style={{ backgroundColor: '#FF6969' }}>
-            Удалить
-          </Items>
-        </ListItem>
-        <ListItem>
-          <Items className="first">Адам Мышыкбеков</Items>
-          <Items className="first">5/09/21</Items>
-          <Items className="second" style={{ backgroundColor: '#FCB242' }}>
-            Заблокировать
-          </Items>
-          <Items className="second" style={{ backgroundColor: '#FF6969' }}>
-            Удалить
-          </Items>
-        </ListItem>
-        <ListItem>
-          <Items className="first">Маймыл Мышыкбеков</Items>
-          <Items className="first">5/09/21</Items>
-          <Items className="second" style={{ backgroundColor: '#FCB242' }}>
-            Заблокировать
-          </Items>
-          <Items className="second" style={{ backgroundColor: '#FF6969' }}>
-            Удалить
-          </Items>
-        </ListItem>
-        <ListItem>
-          <Items className="first">Кортошко Мышыкбеков</Items>
-          <Items className="first">5/09/21</Items>
-          <Items className="second" style={{ backgroundColor: '#FCB242' }}>
-            Заблокировать
-          </Items>
-          <Items className="second" style={{ backgroundColor: '#FF6969' }}>
-            Удалить
-          </Items>
-        </ListItem>
-        <ListItem>
-          <Items className="first">Морковь Мышыкбеков</Items>
-          <Items className="first">5/09/21</Items>
-          <Items className="second" style={{ backgroundColor: '#FCB242' }}>
-            Заблокировать
-          </Items>
-          <Items className="second" style={{ backgroundColor: '#FF6969' }}>
-            Удалить
-          </Items>
-        </ListItem>
-        <ListItem>
-          <Items className="first">Лукбек Мышыкбеков</Items>
-          <Items className="first">5/09/21</Items>
-          <Items className="second" style={{ backgroundColor: '#FCB242' }}>
-            Заблокировать
-          </Items>
-          <Items className="second" style={{ backgroundColor: '#FF6969' }}>
-            Удалить
-          </Items>
-        </ListItem>
+        {users?.map((el) => (
+          <ListItem key={el._id}>
+            <Items className="first">{el.username}</Items>
+            <Items className="first">
+              {format(new Date(el.createdAt), 'yyyy-LL-dd')}
+            </Items>
+            <Items className="second" style={{ backgroundColor: '#FCB242' }}>
+              Заблокировать
+            </Items>
+            <Items className="second" style={{ backgroundColor: '#FF6969' }}>
+              Удалить
+            </Items>
+          </ListItem>
+        ))}
       </List>
     </>
   );

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import {
   Box,
   ChartWrapper,
@@ -11,8 +12,48 @@ import {
 } from './Chart.styled';
 import { FaUserPlus } from 'react-icons/fa';
 import { MdDownloadForOffline } from 'react-icons/md';
+import CH from '../CH/CH';
+import { userReq } from '../../redux/apiCalls.js';
 
 const Chart = () => {
+  const [userStats, setUserStats] = useState([]);
+
+  const MONTHS = useMemo(
+    () => [
+      'Янв',
+      'Фев',
+      'Мар',
+      'Апр',
+      'Май',
+      'Июн',
+      'Июл',
+      'Авг',
+      'Сен',
+      'Окт',
+      'Ноя',
+      'Дек',
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await userReq.get('/users/stats');
+        res.data.map((item) =>
+          setUserStats((prev) => [
+            ...prev,
+            {
+              name: MONTHS[item._id - 1],
+              'Активные пользоветели': item.total,
+            },
+          ])
+        );
+      } catch {}
+    };
+    getStats();
+  }, [MONTHS]);
+
   return (
     <>
       <Title>Статистика сайта</Title>
@@ -34,7 +75,14 @@ const Chart = () => {
             <NumTitle>Скачивайний книг</NumTitle>
           </Box>
         </Left>
-        <Right>Chart</Right>
+        <Right>
+          <CH
+            data={userStats}
+            title="Количество зарегистрированных пользователей в сайте "
+            grid
+            dataKey="Активные пользоветели"
+          />
+        </Right>
       </ChartWrapper>
     </>
   );
