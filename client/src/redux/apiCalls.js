@@ -10,12 +10,14 @@ import {
 } from './userSlice';
 
 const BASE_URL = 'http://localhost:3001/';
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user)
+const TOKEN = JSON.parse(JSON.parse(localStorage.getItem('persist:root'))?.user)
   ?.currentUser?.accessToken;
 
 export const publicReq = axios.create({
   baseURL: BASE_URL,
 });
+
+console.log(JSON.parse);
 
 export const userReq = axios.create({
   baseURL: BASE_URL,
