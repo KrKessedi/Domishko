@@ -7,6 +7,7 @@ import StaticUsers from './StaticUsers/StaticUsers';
 import CreateBook from './CreateBook/CreateBook';
 import Modal from './Modal/Modal';
 import BookModal from './BookModal/BookModal';
+import UpdateBook from './UpdateBook/UpdateBook';
 
 export {
   Login,
@@ -18,4 +19,5 @@ export {
   StaticUsers,
   Modal,
   BookModal,
+  UpdateBook,
 };

@@ -8,39 +8,37 @@ export const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const Select = styled.select`
-  margin-bottom: 20px;
-`;
-
-export const Option = styled.option``;
-
-export const List = styled.ul`
-  overflow-y: scroll;
-`;
-
-export const ListItem = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid #e8d3b9;
-  padding: 10px;
-  margin: 0 10px;
-`;
-
-export const Items = styled.span`
-  font-size: 20px;
+export const List = styled.div`
+  font-size: 16px;
   font-weight: 700;
 
-  &.first {
-    width: 400px;
+  &.btn {
+    width: 100%;
   }
 
-  &.second {
-    border: 1px solid;
-    border-radius: 40px;
-    padding: 10px 30px;
-    font-size: 20px;
-    font-weight: 700;
+  &.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+`;
+
+export const Item = styled.div`
+  &.btn {
+    font-size: 16px;
+    font-weight: 500;
     color: white;
+    background-color: #ff6969;
+    border: 1px solid;
+    border-radius: 22px;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &.edit {
+    color: white;
+    background-color: #fcb242;
   }
 `;

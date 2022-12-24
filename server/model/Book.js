@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ProductSchema = new mongoose.Schema(
+const BookSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -21,14 +21,24 @@ const ProductSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
-      required: true,
+      default: 10,
     },
     language: {
       type: String,
       required: true,
     },
+    pages: {
+      type: Number,
+    },
     comm: {
       type: Array,
+    },
+    linkToDown: {
+      type: String,
+      required: true,
+    },
+    linkToRead: {
+      type: String,
       required: true,
     },
   },
@@ -37,4 +47,4 @@ const ProductSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model('Book', BookSchema);
