@@ -51,14 +51,3 @@ export const SubTitle = styled.p`
   padding: 5px 10px;
   height: 50px;
 `;
-
-export const StaticBTN = styled.button`
-  border: none;
-  padding: 10px 20px;
-  border-radius: 18px;
-  background-color: #fcb242;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  color: white;
-`;
