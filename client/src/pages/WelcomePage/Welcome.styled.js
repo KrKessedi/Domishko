@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+	width: 93%;
+	margin: 0 auto;
+	font-family: 'Inter', sans-serif;
+`
+
 export const Title = styled.h1`
 	font-size: ${(props) => props.fontSize || '35px'};
 	font-weight: 600;

@@ -1,8 +1,8 @@
-import React from 'react'
-import Navbar from './components/Navbar/Navbar'
+import React, { useState } from 'react'
 import MainRoutes from './MainRoutes'
 import styled from 'styled-components'
 import './App.css'
+import Modal from './components/Modal/Modal'
 
 const Container = styled.div`
 	width: 93%;
@@ -11,11 +11,15 @@ const Container = styled.div`
 `
 
 function App() {
+	const [modal, setModal] = useState(false)
 	return (
 		<>
 			<Container>
 				<MainRoutes />
 			</Container>
+
+			<Modal isOpened={modal} onModalClose={() => setModal(false)} />
+			<button onClick={() => setModal(true)}>Book</button>
 		</>
 	)
 }

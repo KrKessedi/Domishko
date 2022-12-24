@@ -7,22 +7,25 @@ import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { createGlobalStyle } from 'styled-components'
 
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
 const Global = createGlobalStyle`
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	color: #434140;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
 }
+
 body {
-	background-color: rgb(254, 248, 238);
+  background-color: rgb(254, 248, 238);
 }
-a{
-	text-decoration: none;
+
+a {
+  text-decoration: none;
 }
 `
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
 	<BrowserRouter>

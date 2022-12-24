@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Flex, Text, Title } from './Welcome.styled'
+import { Button, Flex, Text, Title, Container } from './Welcome.styled'
 import Slider from 'react-slick'
 import './Carousel.css'
 import book1 from '../../images/Books_images/Rectangle 6.png'
@@ -15,6 +15,7 @@ import book9 from '../../images/Books_images/Rectangle 14.png'
 import LeftArrow from '../../images/Arrow/Vector.svg'
 import RightArrow from '../../images/Arrow/Vector-1.svg'
 import Genre from '../../components/Genre/Genre'
+import { Modal } from '../../components'
 
 const images = [book1, book2, book3, book4, book5, book6, book7, book8, book9]
 
@@ -54,7 +55,7 @@ const WelcomePage = () => {
 		},
 	}
 	return (
-		<>
+		<Container>
 			<Flex bottom={'4em'}>
 				<Flex column={'column'} width={'241px'}>
 					<Title bottom={'11px'}>Бестселлеры</Title>
@@ -65,7 +66,7 @@ const WelcomePage = () => {
 					</Text>
 					<Button>Смотреть</Button>
 				</Flex>
-				<Slider {...setting} style={{ width: '833px', margin: '1em 47px 0 0' }}>
+				<Slider {...setting} style={{ width: '800px', margin: '2em auto 0' }}>
 					{images.map((img, idx) => (
 						<div
 							key={idx}
@@ -105,7 +106,7 @@ const WelcomePage = () => {
 				</Title>
 			</Flex>
 			<Genre flexDirection={'row-reverse'} />
-		</>
+		</Container>
 	)
 }
 
