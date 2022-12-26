@@ -79,7 +79,7 @@ export const Logout = async (dispatch) => {
 export const getUser = async (dispatch) => {
   dispatch(getUserStart());
   try {
-    const res = await userReq.get('/users');
+    const res = await publicReq.get('/users');
     dispatch(getUserSuccess(res.data));
   } catch (err) {
     dispatch(getUserFailure());
