@@ -1,6 +1,12 @@
 .slide img {
-	width: 9em;
+	width: 7em;
 	bottom: 0;
+	height: 10em;
+	border-radius: 20px;
+}
+
+.slick-list {
+	padding: 30px !important;
 }
 
 .slide {

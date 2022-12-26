@@ -1,10 +1,17 @@
 import styled from 'styled-components'
 
-export const Title = styled.h1`
+export const Container = styled.div`
+	width: 93%;
+	margin: 0 auto;
+	font-family: 'Inter', sans-serif;
+`
+
+export const Title = styled.p`
 	font-size: ${(props) => props.fontSize || '35px'};
 	font-weight: 600;
 	line-height: ${(props) => props.fontHeight || '42px'};
 	margin-bottom: ${(props) => props.bottom};
+	cursor: ${(props) => props.cursor};
 `
 
 export const Flex = styled.div`

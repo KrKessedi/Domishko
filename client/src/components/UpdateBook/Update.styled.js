@@ -26,12 +26,13 @@ export const BookWrap = styled.div`
 export const BookWrapper = styled.div`
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   word-break: break-word;
 
   svg {
     font-size: 32px;
     margin-right: 10px;
+    color: #fcb242;
   }
 `;
 
@@ -43,7 +44,7 @@ export const Info = styled.span`
     overflow: hidden;
     height: 180px;
     padding: 6px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 8px;
   }
 `;

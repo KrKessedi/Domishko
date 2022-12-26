@@ -1,20 +1,20 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const FooterStyled = styled.div`
-	padding: 55px;
-	width: 93%;
-	margin: 0 auto;
-`
+  padding: 40px;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 export const Text = styled.div`
-	font-size: 15px;
-	line-height: 18px;
-	color: #000000;
-`
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+`;
 
 export const ContactsBlock = styled.div`
-	width: 30%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

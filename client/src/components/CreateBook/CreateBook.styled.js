@@ -6,7 +6,8 @@ export const Title = styled.h2`
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-  margin: 20px 0;
+  margin-bottom: 10px 0;
+  color: #fcb242;
 `;
 
 export const InputWrapper = styled.ul`
@@ -30,6 +31,7 @@ export const Label = styled.label`
   svg {
     font-size: 26px;
     margin-right: 6px;
+    color: #fcb242;
   }
 `;
 

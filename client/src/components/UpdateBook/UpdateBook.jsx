@@ -114,7 +114,7 @@ const UpdateBook = () => {
           <BookWrapper>
             <GiBookmarklet title="Название книги" />
 
-            <Info style={{ fontWeight: 'bolder', fontSize: '22px' }}>
+            <Info style={{ fontWeight: 'bold', fontSize: '20px' }}>
               {book.title}
             </Info>
           </BookWrapper>
@@ -230,6 +230,7 @@ const UpdateBook = () => {
               Категорие книги
             </Label>
             <Select name="categories" onChange={handleChange}>
+              <Option>Выберите категорию книги</Option>
               <Option value="Бестселлеры">Бестселлеры</Option>
               <Option value="Фантастика">Фантастика</Option>
               <Option value="Романтика">Романтика</Option>
@@ -246,6 +247,7 @@ const UpdateBook = () => {
               Язык книги
             </Label>
             <Select name="language" onChange={handleChange}>
+              <Option>Выберите язык книги</Option>
               <Option value="Кыргызский">Кыргызский</Option>
               <Option value="Русский">Русский</Option>
               <Option value="Английский">Английский</Option>

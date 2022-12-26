@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const Title = styled.h2`
-  font-size: 42px;
+  font-size: 30px;
   font-weight: 700;
   color: #003b94;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const List = styled.div`
