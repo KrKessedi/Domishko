@@ -29,6 +29,7 @@ router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
         new: true,
       }
     );
+    console.log(updatedBook);
     res.status(200).json(updatedBook);
   } catch (err) {
     res.status(500).json(err);
