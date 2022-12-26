@@ -2,14 +2,17 @@ import React from 'react';
 import { Box, Number, Statistics, SubTitle, Title, Top } from './Static.styled';
 import { FaSearch, FaUser } from 'react-icons/fa';
 import { ImBook } from 'react-icons/im';
+import { useSelector } from 'react-redux';
 
 const Static = () => {
+  const stats = useSelector((state) => state);
+  console.log(stats);
   return (
     <Statistics>
       <Box>
         <Top>
           <FaSearch />
-          <Number>240</Number>
+          <Number>1111</Number>
         </Top>
         <Title>Посещений сайта</Title>
         <SubTitle>Посещения показываются за период последнего дня.</SubTitle>
@@ -17,7 +20,7 @@ const Static = () => {
       <Box>
         <Top>
           <ImBook />
-          <Number>4125</Number>
+          <Number>{stats.book.books.length}</Number>
         </Top>
         <Title>Книг на сайте</Title>
         <SubTitle>Удаленные книги нельзя восстановить.</SubTitle>
@@ -25,7 +28,7 @@ const Static = () => {
       <Box>
         <Top>
           <FaUser />
-          <Number>125</Number>
+          <Number>{stats.user.users.length}</Number>
         </Top>
         <Title>Пользователей на сайте</Title>
         <SubTitle>Удаленные аккаунты нельзя восстановить.</SubTitle>

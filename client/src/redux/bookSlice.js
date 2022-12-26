@@ -45,7 +45,7 @@ export const bookSlice = createSlice({
       state.isFetching = false;
       state.books[
         state.books.findIndex((item) => item._id === action.payload.id)
-      ] = action.payload.Book;
+      ] = action.payload.books;
       state.error = false;
     },
     updateBookFailure: (state) => {
