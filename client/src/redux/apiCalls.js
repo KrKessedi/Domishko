@@ -30,6 +30,9 @@ import {
   registerFailure,
   registerStart,
   registerSuccess,
+  updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
 } from './userSlice';
 
 const BASE_URL = 'http://localhost:3001/';
@@ -140,5 +143,15 @@ export const updateBook = async (book, id, dispatch) => {
     dispatch(updateBookSuccess(res.id, id));
   } catch (err) {
     dispatch(updateBookFailure());
+  }
+};
+
+export const updateUser = async (user, id, dispatch) => {
+  dispatch(updateUserStart());
+  try {
+    const res = await userReq.put(`/users/${id}`, user);
+    dispatch(updateUserSuccess(res.id, id));
+  } catch (err) {
+    dispatch(updateUserFailure());
   }
 };

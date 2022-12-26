@@ -15,18 +15,18 @@ const Admin = (props) => {
     <AdminWrapper>
       <Sidebar>
         <SidebarWrapper>
-          <SidebarElements>
-            <Link to="/admin">Главная</Link>
-          </SidebarElements>
-          <SidebarElements>
-            <Link to="/admin/book">Книги</Link>
-          </SidebarElements>
-          <SidebarElements>
-            <Link to="/admin/users">Пользователи</Link>
-          </SidebarElements>
-          <SidebarElements>
-            <Link to="/admin/createBook">Загрузить книгу</Link>
-          </SidebarElements>
+          <Link to="/admin">
+            <SidebarElements>Главная</SidebarElements>
+          </Link>
+          <Link to="/admin/book">
+            <SidebarElements>Книги</SidebarElements>
+          </Link>
+          <Link to="/admin/users">
+            <SidebarElements>Пользователи</SidebarElements>
+          </Link>
+          <Link to="/admin/createBook">
+            <SidebarElements>Загрузить книгу</SidebarElements>
+          </Link>
         </SidebarWrapper>
       </Sidebar>
       <Dashboard>
