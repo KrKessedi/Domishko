@@ -6,7 +6,7 @@ export const Container = styled.div`
 	font-family: 'Inter', sans-serif;
 `
 
-export const Title = styled.h1`
+export const Title = styled.p`
 	font-size: ${(props) => props.fontSize || '35px'};
 	font-weight: 600;
 	line-height: ${(props) => props.fontHeight || '42px'};

@@ -3,11 +3,11 @@ import BookImage from '../../images/Book.jpeg'
 import { Flex } from '../../pages/WelcomePage/Welcome.styled'
 import { Text } from './Book.styled'
 
-const MainBook = () => {
+const MainBook = ({ book }) => {
 	return (
 		<Flex>
 			<img
-				src={BookImage}
+				src={book.img}
 				style={{
 					width: '200px',
 					height: '312px',
@@ -18,7 +18,7 @@ const MainBook = () => {
 			/>
 			<Flex column={'column'} justifyContent={'start-end'}>
 				<Text fontSize={'40px'} lineHeight={'48px'} bottom={'10px'}>
-					Исчезнувшая
+					{book.title}
 				</Text>
 				<Text
 					fontSize={'25px'}
@@ -29,10 +29,7 @@ const MainBook = () => {
 					Гиллиан Флинн
 				</Text>
 				<Text fontSize={'16px'} lineHeight={'19px'} width={'300px'}>
-					"1984" — культовый роман Джорджа Оруэлла, действие которого
-					разворачивается в тоталитарном, бюрократическом государстве, где
-					процветает пропаганда и цензура, и где один человек решил побороться
-					за право быть индивидуальной личностью.
+					{book.desc}
 				</Text>
 			</Flex>
 		</Flex>

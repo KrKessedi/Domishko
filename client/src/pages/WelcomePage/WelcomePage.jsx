@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Flex, Text, Title, Container } from './Welcome.styled'
+import { Button, Flex, Text, Title } from './Welcome.styled'
 import Slider from 'react-slick'
 import './Carousel.css'
 import book1 from '../../images/Books_images/Rectangle 6.png'
@@ -16,10 +16,21 @@ import LeftArrow from '../../images/Arrow/Vector.svg'
 import RightArrow from '../../images/Arrow/Vector-1.svg'
 import Genre from '../../components/Genre/Genre'
 import { Modal } from '../../components'
+import { useSelector } from 'react-redux'
 
-const images = [book1, book2, book3, book4, book5, book6, book7, book8, book9]
+import styled from 'styled-components'
+
+export const Container = styled.div`
+	width: 100%;
+	border: 1px solid #e8d3b9;
+	border-radius: 45px;
+	background-color: #fffdfa;
+	padding: 57px 75px;
+`
 
 const WelcomePage = () => {
+	const books = useSelector((state) => state.book.books)
+
 	const PrevArrow = ({ onClick }) => {
 		return (
 			<div className='arrow prev' onClick={onClick}>
@@ -44,7 +55,7 @@ const WelcomePage = () => {
 		speed: 300,
 		slidesToShow: 5,
 		centerMode: true,
-		centerPadding: 0,
+		centerPadding: '20px',
 		nextArrow: <NextArrow />,
 		prevArrow: <PrevArrow />,
 		beforeChange: (prevent, next) => {
@@ -67,7 +78,7 @@ const WelcomePage = () => {
 					<Button>Смотреть</Button>
 				</Flex>
 				<Slider {...setting} style={{ width: '800px', margin: '2em auto 0' }}>
-					{images.map((img, idx) => (
+					{books.map((book, idx) => (
 						<div
 							key={idx}
 							className={
@@ -82,30 +93,13 @@ const WelcomePage = () => {
 									: 'slide'
 							}
 						>
-							<img src={img} alt={img} />
+							<img src={book.img} alt={book.img} />
 						</div>
 					))}
 				</Slider>
 			</Flex>
-
-			<Flex width={'100%'} bottom={'20px'}>
-				<Title fontSize={'20px'} fontHeight={'24px'}>
-					Фантастика
-				</Title>
-				<Title fontSize={'20px'} fontHeight={'24px'}>
-					Смотреть все
-				</Title>
-			</Flex>
-			<Genre />
-			<Flex width={'100%'} bottom={'20px'}>
-				<Title fontSize={'20px'} fontHeight={'24px'}>
-					Фантастика
-				</Title>
-				<Title fontSize={'20px'} fontHeight={'24px'}>
-					Смотреть все
-				</Title>
-			</Flex>
-			<Genre flexDirection={'row-reverse'} />
+			<Genre category={'Фантастика'} />
+			<Genre flexDirection={'row-reverse'} category={'Романтика'} />
 		</Container>
 	)
 }

@@ -16,9 +16,9 @@ const Layout = () => {
 	return (
 		<>
 			<Navbar />
-			<Container>
-				<Outlet />
-			</Container>
+			{/* <Container> */}
+			<Outlet />
+			{/* </Container> */}
 
 			<Footer />
 		</>

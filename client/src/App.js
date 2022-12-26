@@ -17,9 +17,6 @@ function App() {
 			<Container>
 				<MainRoutes />
 			</Container>
-
-			<Modal isOpened={modal} onModalClose={() => setModal(false)} />
-			<button onClick={() => setModal(true)}>Book</button>
 		</>
 	)
 }
