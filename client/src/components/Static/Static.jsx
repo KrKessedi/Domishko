@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const Static = () => {
   const stats = useSelector((state) => state);
-  console.log(stats);
+
   return (
     <Statistics>
       <Box>

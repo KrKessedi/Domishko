@@ -4,10 +4,8 @@ const { verifyTokenAndAdmin } = require('./verifyJWT');
 const router = require('express').Router();
 
 //CREATE
-router.post('/', verifyTokenAndAdmin, async (req, res) => {
+router.post('/', async (req, res) => {
   const newBook = new Book(req.body);
-
-  console.log(newBook);
 
   try {
     const savedBook = await newBook.save();
@@ -29,7 +27,6 @@ router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
         new: true,
       }
     );
-    console.log(updatedBook);
     res.status(200).json(updatedBook);
   } catch (err) {
     res.status(500).json(err);

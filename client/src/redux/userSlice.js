@@ -39,6 +39,7 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.currentUser = null;
+      state.user = null;
     },
     getUserStart: (state) => {
       state.isFetching = true;
@@ -84,6 +85,21 @@ export const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    updateUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateUserSuccess: (state, action) => {
+      state.isFetching = false;
+      state.users[
+        state.users.findIndex((item) => item._id === action.payload.id)
+      ] = action.payload.users;
+      state.error = false;
+    },
+    updateUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
@@ -104,6 +120,9 @@ export const {
   blockUserStart,
   blockUserSuccess,
   blockUserFailure,
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -26,17 +26,11 @@ export const SidebarElements = styled.li`
   cursor: pointer;
   display: flex;
   align-items: center;
-
-  a {
-    color: #003b94;
-  }
+  color: #003b94;
 
   &:hover {
     background-color: #003b94;
-
-    & a {
-      color: white;
-    }
+    color: white;
   }
 `;
 
@@ -48,5 +42,6 @@ export const Product = styled.div`
   border: 1px solid #e8d3b9;
   border-radius: 45px;
   margin-top: 20px;
-  padding: 20px;
+  padding: 5px 20px;
+  background-color: white;
 `;
