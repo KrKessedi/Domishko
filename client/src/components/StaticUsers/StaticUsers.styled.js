@@ -53,6 +53,11 @@ export const Item = styled.div`
     background-color: #fcb242;
   }
 
+  &.blocked {
+    color: white;
+    background-color: #555;
+  }
+
   svg {
     font-size: 36px;
   }

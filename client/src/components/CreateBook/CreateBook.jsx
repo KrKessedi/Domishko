@@ -19,6 +19,12 @@ import {
 } from 'firebase/storage';
 import app from '../../firebase';
 import { addBook } from '../../redux/apiCalls';
+import { GiBookmarklet } from 'react-icons/gi';
+import { TbLanguage, TbNumbers } from 'react-icons/tb';
+import { FaCompass, FaUserEdit } from 'react-icons/fa';
+import { MdAddLink } from 'react-icons/md';
+import { RiFileList2Fill } from 'react-icons/ri';
+import { BsFileEarmarkImage } from 'react-icons/bs';
 
 const CreateBook = () => {
   const [inputs, setInputs] = useState({});
@@ -76,7 +82,11 @@ const CreateBook = () => {
       <Title>Загрузить книгу</Title>
       <InputWrapper>
         <Inputs>
-          <Label>Название книги</Label>
+          <Label>
+            {' '}
+            <GiBookmarklet />
+            Название книги
+          </Label>
           <Input
             name="title"
             onChange={handleChange}
@@ -85,7 +95,24 @@ const CreateBook = () => {
           />
         </Inputs>
         <Inputs>
-          <Label>Описание книги</Label>
+          <Label>
+            {' '}
+            <FaUserEdit />
+            Автор книги
+          </Label>
+          <Input
+            name="author"
+            onChange={handleChange}
+            type="text"
+            placeholder="Автор книги"
+          />
+        </Inputs>
+        <Inputs>
+          <Label>
+            {' '}
+            <RiFileList2Fill />
+            Описание книги
+          </Label>
           <Input
             name="desc"
             onChange={handleChange}
@@ -94,7 +121,11 @@ const CreateBook = () => {
           />
         </Inputs>
         <Inputs>
-          <Label>Облошка книги</Label>
+          <Label>
+            {' '}
+            <BsFileEarmarkImage />
+            Облошка книги
+          </Label>
           <Input
             id="file"
             onChange={(e) => setFile(e.target.files[0])}
@@ -104,7 +135,11 @@ const CreateBook = () => {
         </Inputs>
 
         <Inputs>
-          <Label>Категорие книги</Label>
+          <Label>
+            {' '}
+            <FaCompass />
+            Категорие книги
+          </Label>
           <Select name="categories" onChange={handleChange}>
             <Option value="Бестселлеры">Бестселлеры</Option>
             <Option value="Фантастика">Фантастика</Option>
@@ -116,7 +151,11 @@ const CreateBook = () => {
         </Inputs>
 
         <Inputs>
-          <Label>Язык книги</Label>
+          <Label>
+            {' '}
+            <TbLanguage />
+            Язык книги
+          </Label>
           <Select name="language" onChange={handleChange}>
             <Option value="Кыргызский">Кыргызский</Option>
             <Option value="Русский">Русский</Option>
@@ -125,7 +164,11 @@ const CreateBook = () => {
         </Inputs>
 
         <Inputs>
-          <Label>Количество страниц в книге</Label>
+          <Label>
+            {' '}
+            <TbNumbers />
+            Количество страниц в книге
+          </Label>
           <Input
             name="pages"
             onChange={handleChange}
@@ -134,16 +177,24 @@ const CreateBook = () => {
           />
         </Inputs>
         <Inputs>
-          <Label>Cсылка для скачивания </Label>
+          <Label>
+            {' '}
+            <MdAddLink />
+            Cсылка для скачивания{' '}
+          </Label>
           <Input
             name="linkToDown"
             onChange={handleChange}
             type="text"
-            placeholder="Название книги"
+            placeholder="Cсылка для скачивания книги"
           />
         </Inputs>
         <Inputs>
-          <Label>Cсылка для чтения книги</Label>
+          <Label>
+            {' '}
+            <MdAddLink />
+            Cсылка для чтения книги
+          </Label>
           <Input
             name="linkToRead"
             onChange={handleChange}
@@ -151,9 +202,7 @@ const CreateBook = () => {
             placeholder="Cсылка для чтения книги"
           />
         </Inputs>
-        <Inputs className="last">
-          <Button onClick={handleClick}>Опубликовать</Button>
-        </Inputs>
+        <Button onClick={handleClick}>Сохранить изменения</Button>
       </InputWrapper>
     </Container>
   );
