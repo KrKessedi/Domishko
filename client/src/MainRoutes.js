@@ -16,10 +16,10 @@ import GenrePage from './pages/GenrePage/GenrePage'
 const MainRoutes = () => {
 	return (
 		<Routes>
+			<Route path='login' element={<Login />} />
+			<Route path='register' element={<Register />} />
 			<Route path='/' element={<Layout />}>
 				<Route index element={<WelcomePage />} />
-				<Route path='login' element={<Login />} />
-				<Route path='register' element={<Register />} />
 				<Route path='genre' element={<GenrePage />} />
 				<Route
 					path='admin'

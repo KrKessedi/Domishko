@@ -11,6 +11,7 @@ export const Title = styled.p`
 	font-weight: 600;
 	line-height: ${(props) => props.fontHeight || '42px'};
 	margin-bottom: ${(props) => props.bottom};
+	cursor: ${(props) => props.cursor};
 `
 
 export const Flex = styled.div`

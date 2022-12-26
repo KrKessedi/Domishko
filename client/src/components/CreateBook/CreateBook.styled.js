@@ -19,17 +19,18 @@ export const Inputs = styled.li`
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
-
-  &.last {
-    width: 83%;
-    display: flex;
-    align-items: end;
-  }
 `;
 
 export const Label = styled.label`
   font-size: 18px;
   margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+
+  svg {
+    font-size: 26px;
+    margin-right: 6px;
+  }
 `;
 
 export const Input = styled.input`
@@ -50,7 +51,12 @@ export const Button = styled.button`
   font-weight: 700;
   width: 400px;
   color: white;
-  margin: 10px 0;
+  height: 46px;
+  margin: 41px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Select = styled.select`

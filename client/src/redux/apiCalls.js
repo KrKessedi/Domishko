@@ -9,8 +9,14 @@ import {
   getBookFailure,
   getBookStart,
   getBookSuccess,
+  updateBookFailure,
+  updateBookStart,
+  updateBookSuccess,
 } from './bookSlice';
 import {
+  blockUserFailure,
+  blockUserStart,
+  blockUserSuccess,
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
@@ -114,5 +120,25 @@ export const addBook = async (book, dispatch) => {
     dispatch(addBookSuccess(res.data));
   } catch (err) {
     dispatch(addBookFailure());
+  }
+};
+
+export const blockUser = async (blocked, id, dispatch) => {
+  dispatch(blockUserStart());
+  try {
+    const res = await userReq.put(`/users/${id}`, blocked);
+    dispatch(blockUserSuccess(res.id, id));
+  } catch (err) {
+    dispatch(blockUserFailure());
+  }
+};
+
+export const updateBook = async (book, id, dispatch) => {
+  dispatch(updateBookStart());
+  try {
+    const res = await userReq.put(`/books/${id}`, book);
+    dispatch(updateBookSuccess(res.id, id));
+  } catch (err) {
+    dispatch(updateBookFailure());
   }
 };

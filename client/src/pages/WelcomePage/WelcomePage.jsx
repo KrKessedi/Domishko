@@ -15,7 +15,7 @@ import book9 from '../../images/Books_images/Rectangle 14.png'
 import LeftArrow from '../../images/Arrow/Vector.svg'
 import RightArrow from '../../images/Arrow/Vector-1.svg'
 import Genre from '../../components/Genre/Genre'
-import { Modal } from '../../components'
+import Modal from '../../components/Modal/Modal'
 import { useSelector } from 'react-redux'
 
 import styled from 'styled-components'
@@ -29,7 +29,11 @@ export const Container = styled.div`
 `
 
 const WelcomePage = () => {
-	const books = useSelector((state) => state.book.books)
+	const [modal, setModal] = useState(false)
+	const [book, setBook] = useState({})
+	let books = useSelector((state) => state.book.books)
+	let resultBooks = books.slice(0, 9)
+	console.log(resultBooks)
 
 	const PrevArrow = ({ onClick }) => {
 		return (
@@ -67,6 +71,11 @@ const WelcomePage = () => {
 	}
 	return (
 		<Container>
+			<Modal
+				isOpened={modal}
+				book={book}
+				onModalClose={() => setModal(false)}
+			/>
 			<Flex bottom={'4em'}>
 				<Flex column={'column'} width={'241px'}>
 					<Title bottom={'11px'}>Бестселлеры</Title>
@@ -78,8 +87,12 @@ const WelcomePage = () => {
 					<Button>Смотреть</Button>
 				</Flex>
 				<Slider {...setting} style={{ width: '800px', margin: '2em auto 0' }}>
-					{books.map((book, idx) => (
+					{resultBooks.map((book, idx) => (
 						<div
+							onClick={() => {
+								setModal(true)
+								setBook(book)
+							}}
 							key={idx}
 							className={
 								idx === nextIndex

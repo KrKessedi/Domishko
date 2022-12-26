@@ -31,22 +31,26 @@ const BookModal = ({ book }) => {
 			<Top>
 				<Left>
 					<BookIMG src={book.img} />
-					<BTN>Скачать</BTN>
+					<form action={book.linkToDown}>
+						<BTN>Скачать</BTN>
+					</form>
 				</Left>
 				<Right>
 					<Description>
 						<DescItems>
 							<DescTOPLeft>
 								<Title>{book.title}</Title>
-								<Author>Stephens Meyer</Author>
+								<Author>{book.author}</Author>
 							</DescTOPLeft>
-							<DescTOPRight>Читать</DescTOPRight>
+							<form action={book.linkToRead}>
+								<DescTOPRight>Читать</DescTOPRight>
+							</form>
 						</DescItems>
 						<DescItems>
 							<Center>
 								<CenterWrapper>
 									<CenterItems className='title'>Рейтинг</CenterItems>
-									<CenterItems>6/10</CenterItems>
+									<CenterItems>{book.rating}/10</CenterItems>
 								</CenterWrapper>
 								<CenterWrapper>
 									<CenterItems className='title'>Язык</CenterItems>
@@ -54,7 +58,7 @@ const BookModal = ({ book }) => {
 								</CenterWrapper>
 								<CenterWrapper>
 									<CenterItems className='title'>Страницы</CenterItems>
-									<CenterItems>256</CenterItems>
+									<CenterItems>{book.pages}</CenterItems>
 								</CenterWrapper>
 							</Center>
 						</DescItems>

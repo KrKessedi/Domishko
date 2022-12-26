@@ -14,7 +14,7 @@ const Book = ({ book }) => {
 				book={book}
 				onModalClose={() => setModal(false)}
 			/>
-			<Flex onClick={() => setModal(true)}>
+			<Flex onClick={() => setModal(true)} width={'250px'}>
 				<img
 					src={book.img}
 					style={{
@@ -30,7 +30,7 @@ const Book = ({ book }) => {
 						{book.title}
 					</Text>
 					<Text fontSize={'16px'} lineHeight={'19px'} fontWeight={'700'}>
-						Гиллиан Флинн
+						{book.author}
 					</Text>
 				</Flex>
 			</Flex>
