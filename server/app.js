@@ -7,7 +7,6 @@ const authRouter = require('./routes/auth');
 const bookRouter = require('./routes/book');
 // const cartRouter = require('./routes/cart');
 // const orderRouter = require('./routes/order');
-// const stripeRouter = require('./routes/stripe');
 const cors = require('cors');
 
 dbConnect();
@@ -19,7 +18,6 @@ app.use('/users', userRouter);
 app.use('/books', bookRouter);
 // app.use('/carts', cartRouter);
 // app.use('/orders', orderRouter);
-// app.use('/checkout', stripeRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

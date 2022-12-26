@@ -29,13 +29,14 @@ const StaticUsers = () => {
 
   const handleBlock = (id) => {
     blockUser(block, id, dispatch);
+    window.location.reload();
   };
 
   const columns = [
     {
       field: 'avatar',
       headerName: 'Аватар',
-      width: 80,
+      width: 120,
       renderCell: (params) => {
         return (
           <List className="center">
@@ -53,7 +54,7 @@ const StaticUsers = () => {
     {
       field: 'user',
       headerName: 'Имя пользователя',
-      width: 176.4,
+      width: 200,
       renderCell: (params) => {
         return (
           <List className="center">
@@ -77,7 +78,7 @@ const StaticUsers = () => {
     {
       field: 'createdAt',
       headerName: 'Дата регистрации',
-      width: 160,
+      width: 220,
       renderCell: (params) => {
         return (
           <List className="center">
@@ -89,7 +90,7 @@ const StaticUsers = () => {
     {
       field: 'blocked',
       headerName: 'Статус',
-      width: 100,
+      width: 142,
       renderCell: (params) => {
         return (
           <List className="center">
@@ -138,15 +139,15 @@ const StaticUsers = () => {
   return (
     <>
       <Title>Пользователи</Title>
-      <Box sx={{ height: '650px', width: '100%' }}>
+      <Box sx={{ height: '371px', width: '100%', marginBottom: '20px' }}>
         <DataGrid
           rows={users}
           columns={columns}
           getRowId={(row) => row._id}
-          pageSize={10}
+          pageSize={5}
           checkboxSelection
           disableSelectionOnClick
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[5]}
         />
       </Box>
     </>

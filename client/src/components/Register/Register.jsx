@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { register } from '../../redux/apiCalls'
 import logo from '../../images/лого.svg'
+import { Link } from 'react-router-dom'
 import {
 	Button,
 	Container,
@@ -54,6 +55,7 @@ const Register = () => {
 						placeholder='Подтвердите пароль'
 						onChange={(e) => setConPass(e.target.value)}
 					/>
+
 					<Button onClick={handleClick}>Создать</Button>
 				</Form>
 			</Wrapper>

@@ -9,11 +9,15 @@ import Chart from './components/Chart/Chart'
 import StaticBook from './components/StaticBook/StaticBook'
 import StaticUsers from './components/StaticUsers/StaticUsers'
 import CreateBook from './components/CreateBook/CreateBook'
-import { Admin } from './pages'
+import { Admin, UserProfile } from './pages'
 import { UpdateBook } from './components'
+import { useSelector } from 'react-redux'
 import GenrePage from './pages/GenrePage/GenrePage'
 
 const MainRoutes = () => {
+	const user = useSelector((state) => state.user.currentUser)
+	const params = user?.email?.split('@')[0]
+
 	return (
 		<Routes>
 			<Route path='login' element={<Login />} />
@@ -21,6 +25,7 @@ const MainRoutes = () => {
 			<Route path='/' element={<Layout />}>
 				<Route index element={<WelcomePage />} />
 				<Route path='genre' element={<GenrePage />} />
+				<Route path={`${params}`} element={<UserProfile />} />
 				<Route
 					path='admin'
 					element={

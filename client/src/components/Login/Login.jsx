@@ -12,13 +12,14 @@ import {
 } from './Login.styled'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/apiCalls'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../images/лого.svg'
 
 const Login = () => {
 	const [email, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const handleClick = (e) => {
 		e.preventDefault()
@@ -32,7 +33,7 @@ const Login = () => {
 				<Title margin={'2em 0 3em'}>
 					Войдите в свой аккаунт, чтобы получить доступ ко всем функциям
 				</Title>
-				<Form>
+				<Form action='/login'>
 					<Label>Email</Label>
 					<Input
 						bottom={'1.5em'}
@@ -46,7 +47,15 @@ const Login = () => {
 						placeholder='Напишите свой пароль'
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<Button onClick={handleClick}>Login</Button>
+					<Link to='/'>
+						<Button
+							onClick={() => {
+								handleClick()
+							}}
+						>
+							Login
+						</Button>
+					</Link>
 				</Form>
 				<RegisterLink>
 					Если у Вас нет аккаунта? <Link to='/register'>Регистрация</Link>

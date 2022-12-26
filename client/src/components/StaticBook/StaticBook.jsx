@@ -23,11 +23,24 @@ const StaticBook = () => {
     {
       field: 'book',
       headerName: 'Книга',
-      width: 206.4,
+      width: 200,
       renderCell: (params) => {
         return (
           <List>
             <Item>{params.row.title}</Item>
+          </List>
+        );
+      },
+    },
+
+    {
+      field: 'author',
+      headerName: 'Автор',
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <List>
+            <Item>{params.row.author}</Item>
           </List>
         );
       },
@@ -60,7 +73,7 @@ const StaticBook = () => {
     {
       field: 'language',
       headerName: 'Язык',
-      width: 140,
+      width: 130,
       renderCell: (params) => {
         return (
           <List className="center">
@@ -84,7 +97,7 @@ const StaticBook = () => {
     {
       field: 'createdAt',
       headerName: 'Дата загрузки',
-      width: 140,
+      width: 122,
       renderCell: (params) => {
         return (
           <List className="center">
@@ -130,15 +143,15 @@ const StaticBook = () => {
   return (
     <>
       <Title>Книги</Title>
-      <Box sx={{ height: '650px', width: '100%' }}>
+      <Box sx={{ height: '371px', width: '100%', marginBottom: '20px' }}>
         <DataGrid
           rows={books}
           columns={columns}
           getRowId={(row) => row._id}
-          pageSize={10}
+          pageSize={5}
           checkboxSelection
           disableSelectionOnClick
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[5]}
         />
       </Box>
     </>
