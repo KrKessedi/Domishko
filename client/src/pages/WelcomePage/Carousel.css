@@ -1,0 +1,39 @@
+.slide img {
+	width: 7em;
+	bottom: 0;
+	height: 10em;
+	border-radius: 20px;
+}
+
+.slick-list {
+	padding: 30px !important;
+}
+
+.slide {
+	transform: scale(0.7);
+	transition: transform 300ms;
+}
+
+.activeMidleSlide {
+	transform: scale(1);
+}
+
+.activeSlide {
+	transform: scale(1.2);
+}
+
+.arrow {
+	position: absolute;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.next {
+	right: 0;
+	top: 50%;
+}
+
+.prev {
+	left: 0;
+	top: 50%;
+}

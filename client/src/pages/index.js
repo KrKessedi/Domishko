@@ -1,4 +1,4 @@
 import Admin from './Admin/Admin';
-import WelcomePage from './WelcomePage.js/WelcomePage';
+import UserProfile from './UserProfile/UserProfile';
 
-export { Admin, WelcomePage };
+export { Admin, UserProfile };

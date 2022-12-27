@@ -1,20 +1,21 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import MainRoutes from './MainRoutes';
 import styled from 'styled-components';
-import { Login, Register } from './components';
-import { WelcomePage } from './pages';
+import './App.css';
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 93%;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+`;
 
 function App() {
   return (
-    <Container>
-      <Routes>
-        <Route index element={<WelcomePage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-      </Routes>
-    </Container>
+    <>
+      <Container>
+        <MainRoutes />
+      </Container>
+    </>
   );
 }
 
