@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -22,6 +22,7 @@ export const Left = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  margin: 12px 0;
 
   &.right {
     justify-content: end;
@@ -53,8 +54,8 @@ export const UserName = styled.input`
   font-size: 40px;
   font-weight: 500;
   text-align: center;
-  margin-top: 20px;
   padding: 8px 12px;
+  margin-right: 10px;
 
   &.username {
     border: none;

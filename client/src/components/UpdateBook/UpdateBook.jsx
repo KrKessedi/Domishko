@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   BookWrap,
   BookWrapper,
-  BTN,
   Container,
   IMG,
   Info,
   Left,
   Right,
-} from './Update.styled';
-import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { GiBookmarklet } from 'react-icons/gi';
-import { TbLanguage, TbNumbers } from 'react-icons/tb';
-import { FaCompass, FaUserEdit } from 'react-icons/fa';
-import { MdAddLink } from 'react-icons/md';
-import { RiFileList2Fill } from 'react-icons/ri';
-import { BsBarChartFill, BsFileEarmarkImage } from 'react-icons/bs';
+} from "./Update.styled";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { GiBookmarklet } from "react-icons/gi";
+import { TbLanguage, TbNumbers } from "react-icons/tb";
+import { FaCompass, FaUserEdit } from "react-icons/fa";
+import { MdAddLink } from "react-icons/md";
+import { RiFileList2Fill } from "react-icons/ri";
+import { BsBarChartFill, BsFileEarmarkImage } from "react-icons/bs";
 import {
   Button,
   Input,
@@ -26,26 +25,26 @@ import {
   Option,
   Select,
   Title,
-} from '../CreateBook/CreateBook.styled';
-import { updateBook, getBooks } from '../../redux/apiCalls';
+} from "../CreateBook/CreateBook.styled";
+import { updateBook, getBooks } from "../../redux/apiCalls";
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
-} from 'firebase/storage';
-import app from '../../firebase';
+} from "firebase/storage";
+import app from "../../firebase";
 
 const UpdateBook = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const bookID = location.pathname.split('/')[3];
+  const bookID = location.pathname.split("/")[3];
   const book = useSelector((state) =>
     state.book.books.find((el) => el._id === bookID)
   );
   const [file, setFile] = useState(null);
   const [inputs, setInputs] = useState({});
-  const [loaded, setLoaded] = useState('Сохранить изменения');
+  const [loaded, setLoaded] = useState("Сохранить изменения");
 
   useEffect(() => {
     getBooks(dispatch);
@@ -74,17 +73,17 @@ const UpdateBook = () => {
       const uploadTask = uploadBytesResumable(imageRef, file);
 
       uploadTask.on(
-        'state_changed',
+        "state_changed",
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setLoaded('Загруска выполнена на ' + progress + '%');
+          setLoaded("Загруска выполнена на " + progress + "%");
           switch (snapshot.state) {
-            case 'paused':
-              console.log('Upload is paused');
+            case "paused":
+              console.log("Upload is paused");
               break;
-            case 'running':
-              console.log('Upload is running');
+            case "running":
+              console.log("Upload is running");
               break;
             default:
           }
@@ -114,7 +113,7 @@ const UpdateBook = () => {
           <BookWrapper>
             <GiBookmarklet title="Название книги" />
 
-            <Info style={{ fontWeight: 'bold', fontSize: '20px' }}>
+            <Info style={{ fontWeight: "bold", fontSize: "20px" }}>
               {book.title}
             </Info>
           </BookWrapper>
@@ -125,7 +124,7 @@ const UpdateBook = () => {
           </BookWrapper>
           <BookWrapper>
             <RiFileList2Fill
-              style={{ fontSize: '38px' }}
+              style={{ fontSize: "38px" }}
               title="Описание книги"
             />
 
@@ -151,20 +150,6 @@ const UpdateBook = () => {
 
             <Info>{book.pages}</Info>
           </BookWrapper>
-          <BookWrapper title={book.linkToDown}>
-            <MdAddLink />
-
-            <Info>
-              <BTN>Скачать</BTN>
-            </Info>
-          </BookWrapper>
-          <BookWrapper title={book.linkToRead}>
-            <MdAddLink />
-
-            <Info>
-              <BTN>Читать</BTN>
-            </Info>
-          </BookWrapper>
         </BookWrap>
       </Left>
       <Right>
@@ -172,7 +157,7 @@ const UpdateBook = () => {
         <InputWrapper>
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <GiBookmarklet />
               Название книги
             </Label>
@@ -185,7 +170,7 @@ const UpdateBook = () => {
           </Inputs>
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <FaUserEdit />
               Автор книги
             </Label>
@@ -198,7 +183,7 @@ const UpdateBook = () => {
           </Inputs>
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <RiFileList2Fill />
               Описание книги
             </Label>
@@ -211,7 +196,7 @@ const UpdateBook = () => {
           </Inputs>
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <BsFileEarmarkImage />
               Облошка книги
             </Label>
@@ -225,7 +210,7 @@ const UpdateBook = () => {
 
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <FaCompass />
               Категорие книги
             </Label>
@@ -242,7 +227,7 @@ const UpdateBook = () => {
 
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <TbLanguage />
               Язык книги
             </Label>
@@ -256,7 +241,7 @@ const UpdateBook = () => {
 
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <TbNumbers />
               Количество страниц в книге
             </Label>
@@ -269,7 +254,7 @@ const UpdateBook = () => {
           </Inputs>
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <MdAddLink />
               Cсылка для скачивания книги
             </Label>
@@ -282,7 +267,7 @@ const UpdateBook = () => {
           </Inputs>
           <Inputs>
             <Label>
-              {' '}
+              {" "}
               <MdAddLink />
               Cсылка для чтения книги
             </Label>
@@ -294,7 +279,7 @@ const UpdateBook = () => {
             />
           </Inputs>
           <Button onClick={handleClick}>
-            {loaded === 'Сохранить изменения' ? 'Сохранить изменения' : loaded}
+            {loaded === "Сохранить изменения" ? "Сохранить изменения" : loaded}
           </Button>
         </InputWrapper>
       </Right>

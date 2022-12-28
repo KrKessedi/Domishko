@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -47,17 +47,6 @@ export const Info = styled.span`
     font-size: 14px;
     border-radius: 8px;
   }
-`;
-
-export const BTN = styled.button`
-  padding: 10px 30px;
-  border: 1px solid;
-  border-radius: 20px;
-  background: orange;
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
 `;
 
 export const Right = styled.div`

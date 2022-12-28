@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   addBookFailure,
   addBookStart,
@@ -12,7 +12,7 @@ import {
   updateBookFailure,
   updateBookStart,
   updateBookSuccess,
-} from './bookSlice';
+} from "./bookSlice";
 import {
   blockUserFailure,
   blockUserStart,
@@ -33,17 +33,18 @@ import {
   updateUserFailure,
   updateUserStart,
   updateUserSuccess,
-} from './userSlice';
+} from "./userSlice";
 
-const BASE_URL = 'http://localhost:3001/';
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem('persist:root'))?.user)
+const BASE_URL = "http://localhost:3001/";
+
+// const BASE_URL = "https://domishka.adaptable.app/";
+
+const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
   ?.currentUser?.accessToken;
 
 export const publicReq = axios.create({
   baseURL: BASE_URL,
 });
-
-console.log(JSON.parse);
 
 export const userReq = axios.create({
   baseURL: BASE_URL,
@@ -55,7 +56,7 @@ export const userReq = axios.create({
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
-    const res = await publicReq.post('/auth/login', user);
+    const res = await publicReq.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
   } catch (err) {
     dispatch(loginFailure());
@@ -65,7 +66,7 @@ export const login = async (dispatch, user) => {
 export const register = async (dispatch, user) => {
   dispatch(registerStart());
   try {
-    const res = await publicReq.post('/auth/register', user);
+    const res = await publicReq.post("/auth/register", user);
     dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure());
@@ -79,7 +80,7 @@ export const Logout = async (dispatch) => {
 export const getUser = async (dispatch) => {
   dispatch(getUserStart());
   try {
-    const res = await publicReq.get('/users');
+    const res = await userReq.get("/users");
     dispatch(getUserSuccess(res.data));
   } catch (err) {
     dispatch(getUserFailure());
@@ -99,7 +100,7 @@ export const deleteUser = async (id, dispatch) => {
 export const getBooks = async (dispatch) => {
   dispatch(getBookStart());
   try {
-    const res = await publicReq.get('/books');
+    const res = await publicReq.get("/books");
     dispatch(getBookSuccess(res.data));
   } catch (err) {
     dispatch(getBookFailure());

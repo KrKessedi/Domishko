@@ -1,32 +1,22 @@
-import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
-import Layout from './components/Layout';
-import ReadPage from './pages/ReadPage/ReadPage';
-import Chart from './components/Chart/Chart';
-import StaticBook from './components/StaticBook/StaticBook';
-import StaticUsers from './components/StaticUsers/StaticUsers';
-import CreateBook from './components/CreateBook/CreateBook';
-import { Admin, UserProfile } from './pages';
-import { UpdateBook } from './components';
-import { useDispatch, useSelector } from 'react-redux';
-import GenrePage from './pages/GenrePage/GenrePage';
-import { getBooks, getUser } from './redux/apiCalls';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import Layout from "./components/Layout";
+import ReadPage from "./pages/ReadPage/ReadPage";
+import Chart from "./components/Chart/Chart";
+import StaticBook from "./components/StaticBook/StaticBook";
+import StaticUsers from "./components/StaticUsers/StaticUsers";
+import CreateBook from "./components/CreateBook/CreateBook";
+import { Admin, UserProfile } from "./pages";
+import { UpdateBook } from "./components";
+import GenrePage from "./pages/GenrePage/GenrePage";
+import { useSelector } from "react-redux";
 
 const MainRoutes = () => {
   const user = useSelector((state) => state.user.currentUser);
-  const params = user?.email?.split('@')[0];
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getUser(dispatch);
-  }, [dispatch]);
-
-  useEffect(() => {
-    getBooks(dispatch);
-  }, [dispatch]);
+  const params = user?.email?.split("@")[0];
 
   return (
     <Routes>
@@ -35,7 +25,10 @@ const MainRoutes = () => {
       <Route path="/" element={user ? <Layout /> : <Login />}>
         <Route index element={user ? <WelcomePage /> : <Login />} />
         <Route path="genre" element={<GenrePage />} />
-        <Route path={`${params}`} element={<UserProfile />} />
+        <Route
+          path={`${params}`}
+          element={user ? <UserProfile /> : <Login />}
+        />
         <Route
           path="admin"
           element={
