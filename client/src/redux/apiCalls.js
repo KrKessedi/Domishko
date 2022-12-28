@@ -35,9 +35,8 @@ import {
   updateUserSuccess,
 } from "./userSlice";
 
-const BASE_URL = "http://localhost:3001/";
-
-// const BASE_URL = "https://domishka.adaptable.app/";
+const BASE_URL = "https://domishka.adaptable.app/";
+// const BASE_URL = "http://localhost:3001/";
 
 const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
   ?.currentUser?.accessToken;
@@ -127,13 +126,15 @@ export const addBook = async (book, dispatch) => {
   }
 };
 
-export const blockUser = async (blocked, id, dispatch) => {
+export const blockUser = async (id, blocked, dispatch) => {
   dispatch(blockUserStart());
   try {
     const res = await userReq.put(`/users/${id}`, blocked);
-    dispatch(blockUserSuccess(res.id, id));
+    dispatch(blockUserSuccess(res.data, id));
+    window.location.reload();
   } catch (err) {
     dispatch(blockUserFailure());
+    console.log(err);
   }
 };
 
@@ -141,7 +142,8 @@ export const updateBook = async (book, id, dispatch) => {
   dispatch(updateBookStart());
   try {
     const res = await userReq.put(`/books/${id}`, book);
-    dispatch(updateBookSuccess(res.id, id));
+    dispatch(updateBookSuccess(res.data._id, id));
+    window.location.reload();
   } catch (err) {
     dispatch(updateBookFailure());
   }
@@ -150,8 +152,9 @@ export const updateBook = async (book, id, dispatch) => {
 export const updateUser = async (user, id, dispatch) => {
   dispatch(updateUserStart());
   try {
-    const res = await userReq.put(`/users/${id}`, user);
-    dispatch(updateUserSuccess(res.id, id));
+    const res = await publicReq.put(`/users/${id}`, user);
+    dispatch(updateUserSuccess(res.data));
+    window.location.reload();
   } catch (err) {
     dispatch(updateUserFailure());
   }

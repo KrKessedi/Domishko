@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import Login from "./components/Login/Login";
@@ -12,11 +12,21 @@ import CreateBook from "./components/CreateBook/CreateBook";
 import { Admin, UserProfile } from "./pages";
 import { UpdateBook } from "./components";
 import GenrePage from "./pages/GenrePage/GenrePage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getBooks, getUser } from "./redux/apiCalls";
 
 const MainRoutes = () => {
   const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
   const params = user?.email?.split("@")[0];
+
+  useEffect(() => {
+    getBooks(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    user?.isAdmin && getUser(dispatch);
+  }, [dispatch, user?.isAdmin]);
 
   return (
     <Routes>
@@ -32,9 +42,11 @@ const MainRoutes = () => {
         <Route
           path="admin"
           element={
-            <Admin>
-              <Chart />
-            </Admin>
+            user?.isAdmin && (
+              <Admin>
+                <Chart />
+              </Admin>
+            )
           }
         />
         <Route
@@ -49,17 +61,21 @@ const MainRoutes = () => {
         <Route
           path="admin/users"
           element={
-            <Admin>
-              <StaticUsers />
-            </Admin>
+            user?.isAdmin && (
+              <Admin>
+                <StaticUsers />
+              </Admin>
+            )
           }
         />
         <Route
           path="admin/createBook"
           element={
-            <Admin>
-              <CreateBook />
-            </Admin>
+            user?.isAdmin && (
+              <Admin>
+                <CreateBook />
+              </Admin>
+            )
           }
         />
       </Route>

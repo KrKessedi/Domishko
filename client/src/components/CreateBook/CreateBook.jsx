@@ -33,7 +33,6 @@ const CreateBook = () => {
   });
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
-  console.log(inputs);
 
   const handleChange = (e) => {
     setInputs((prev) => {

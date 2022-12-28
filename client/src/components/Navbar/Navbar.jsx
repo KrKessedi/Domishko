@@ -1,10 +1,17 @@
 import React from "react";
-import avatar from "../../images/Avatar.png";
-import { NavbarStyled, Flex, Input, Avatar, Title } from "./Navbar.styled";
+import {
+  NavbarStyled,
+  Flex,
+  Input,
+  Avatar,
+  Title,
+  NavWrapper,
+} from "./Navbar.styled";
 import logo from "../../images/лого.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { IoMdLogOut } from "react-icons/io";
+import { AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
+import { RiAdminLine } from "react-icons/ri";
 import { Logout } from "../../redux/apiCalls";
 import { changeGenre } from "../../redux/bookSlice";
 
@@ -26,18 +33,27 @@ const Navbar = () => {
       {block === "admin" ? (
         <NavbarStyled style={{ margin: "0" }}>
           <Flex height={"138px"}>
-            <Link to="/">
-              <img src={logo} alt="logo" style={{ marginLeft: "70px" }} />
+            <Link style={{ display: "flex" }} to="/">
+              <img src={logo} alt="logo" style={{ width: "100px" }} />
             </Link>
-            <Flex width={"922px"}>
+            <Flex>
               <Input></Input>
-              <IoMdLogOut
-                style={{ fontSize: "40px", cursor: "pointer" }}
-                onClick={handleClick}
-              />
-              <Link to={`/${params}`}>
-                <Avatar src={null || avatar} />
-              </Link>
+              <NavWrapper>
+                <AiOutlineLogout onClick={handleClick} />
+                {user?.isAdmin && (
+                  <Link to="/admin" style={{ display: "flex" }}>
+                    <RiAdminLine />
+                  </Link>
+                )}
+                <Link style={{ display: "flex" }} to={`/${params}`}>
+                  {" "}
+                  {user?.avatar ? (
+                    <Avatar src={user?.avatar} />
+                  ) : (
+                    <AiOutlineUser />
+                  )}
+                </Link>
+              </NavWrapper>
             </Flex>
           </Flex>
           <Flex style={{ display: "none" }}></Flex>
@@ -45,21 +61,30 @@ const Navbar = () => {
       ) : (
         <NavbarStyled>
           <Flex height={"138px"}>
-            <Link to="/">
-              <img src={logo} alt="logo" style={{ marginLeft: "70px" }} />
+            <Link style={{ display: "flex" }} to="/">
+              <img src={logo} alt="logo" style={{ width: "100px" }} />
             </Link>
-            <Flex width={"922px"}>
+            <Flex>
               <Input></Input>
-              <IoMdLogOut
-                style={{ fontSize: "40px", cursor: "pointer" }}
-                onClick={handleClick}
-              />
-              <Link to={`/${params}`}>
-                <Avatar src={null || avatar} />
-              </Link>
+              <NavWrapper>
+                <AiOutlineLogout onClick={handleClick} />
+                {user?.isAdmin && (
+                  <Link to="/admin" style={{ display: "flex" }}>
+                    <RiAdminLine />
+                  </Link>
+                )}
+                <Link style={{ display: "flex" }} to={`/${params}`}>
+                  {" "}
+                  {user?.avatar ? (
+                    <Avatar src={user?.avatar} />
+                  ) : (
+                    <AiOutlineUser />
+                  )}
+                </Link>
+              </NavWrapper>
             </Flex>
           </Flex>
-          <Flex width={"1200px"} margin={"0 auto"}>
+          <Flex>
             <Title onClick={() => navigate("/")}>Главная</Title>
             <Title
               onClick={() => {
@@ -115,42 +140,5 @@ const Navbar = () => {
     </>
   );
 };
-
-//   return (
-//     <>
-//       {block === 'admin' ? (
-//         <NavbarStyled style={{ margin: '0' }}>
-//           <Flex height={'138px'}>
-//             <img src={logo} alt="logo" style={{ marginLeft: '70px' }} />
-//             <Flex width={'922px'}>
-//               <Input></Input>
-//               <Avatar src={null || avatar} />
-//             </Flex>
-//           </Flex>
-//           <Flex style={{ display: 'none' }}></Flex>
-//         </NavbarStyled>
-//       ) : (
-//         <NavbarStyled>
-//           <Flex height={'138px'}>
-//             <img src={logo} alt="logo" style={{ marginLeft: '70px' }} />
-//             <Flex width={'922px'}>
-//               <Input></Input>
-//               <Avatar src={null || avatar} />
-//             </Flex>
-//           </Flex>
-//           <Flex width={'1200px'} margin={'0 auto'}>
-//             <Title>Главная</Title>
-//             <Title>Бестселлеры</Title>
-//             <Title>Фантастика</Title>
-//             <Title>Романтика</Title>
-//             <Title>История</Title>
-//             <Title>Психология</Title>
-//             <Title>Бизнес</Title>
-//           </Flex>
-//         </NavbarStyled>
-//       )}
-//     </>
-//   );
-// };
 
 export default Navbar;

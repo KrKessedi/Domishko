@@ -63,7 +63,6 @@ const UpdateBook = () => {
     };
     if (file === null) {
       updateBook(book, bookID, dispatch);
-      window.location.reload();
     } else {
       const fileName = new Date().getTime() + file.name;
       const storage = getStorage(app);
@@ -98,7 +97,6 @@ const UpdateBook = () => {
               img: downloadURL,
             };
             updateBook(book, bookID, dispatch);
-            window.location.reload();
           });
         }
       );

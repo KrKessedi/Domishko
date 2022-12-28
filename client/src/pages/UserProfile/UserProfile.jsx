@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Bottom,
@@ -17,7 +17,7 @@ import {
 } from "./UserProfile.styled";
 import { HiPencilSquare } from "react-icons/hi2";
 import { MdAddAPhoto } from "react-icons/md";
-import { getUser, updateUser } from "../../redux/apiCalls";
+import { updateUser } from "../../redux/apiCalls";
 import {
   getStorage,
   ref,
@@ -29,18 +29,9 @@ import app from "../../firebase";
 const UserProfile = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
-  const userInfo = useSelector((state) =>
-    state.user.users.find((el) => el._id === currentUser._id)
-  );
   const [file, setFile] = useState(null);
   const [inputs, setInputs] = useState({});
   const [loaded, setLoaded] = useState("Сохранить изменения");
-
-  console.log(userInfo);
-
-  useEffect(() => {
-    getUser(dispatch);
-  }, [dispatch]);
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -55,7 +46,6 @@ const UserProfile = () => {
     };
     if (file === null) {
       updateUser(user, currentUser._id, dispatch);
-      window.location.reload();
     } else {
       const fileName = new Date().getTime() + file.name;
       const storage = getStorage(app);
@@ -89,8 +79,12 @@ const UserProfile = () => {
               ...inputs,
               avatar: downloadURL,
             };
-            updateUser(user, currentUser._id, dispatch);
-            window.location.reload();
+            updateUser(
+              user,
+              currentUser._id,
+
+              dispatch
+            );
           });
         }
       );
@@ -101,12 +95,7 @@ const UserProfile = () => {
     <Container>
       <Top>
         <Left>
-          <IMG
-            src={
-              userInfo?.avatar ||
-              "https://trello.com/1/cards/63a6aaca19741d006ed81ecc/attachments/63a747d2d9708e01b9c4f1a5/download/Logo4.jpg"
-            }
-          />
+          <IMG src={currentUser?.avatar} />
           <LabelForAvatar htmlFor="file">
             <MdAddAPhoto />
           </LabelForAvatar>
@@ -121,7 +110,7 @@ const UserProfile = () => {
               name="username"
               onChange={handleChange}
               type="text"
-              placeholder={userInfo?.username}
+              placeholder={currentUser?.username}
             />
             <HiPencilSquare />
           </Wrapper>
@@ -134,7 +123,7 @@ const UserProfile = () => {
                 name="email"
                 onChange={handleChange}
                 type="text"
-                placeholder={userInfo?.email}
+                placeholder={currentUser?.email}
               />
               <HiPencilSquare />
             </Wrapper>
@@ -146,7 +135,7 @@ const UserProfile = () => {
                 name="dateOfBirthday"
                 onChange={handleChange}
                 type="text"
-                placeholder={userInfo?.dateOfBirthday}
+                placeholder={currentUser?.dateOfBirthday}
               />
               <HiPencilSquare />
             </Wrapper>
@@ -158,7 +147,7 @@ const UserProfile = () => {
                 name="phoneNumber"
                 onChange={handleChange}
                 type="text"
-                placeholder={userInfo?.phoneNumber}
+                placeholder={currentUser?.phoneNumber}
               />
               <HiPencilSquare />
             </Wrapper>
