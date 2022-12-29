@@ -160,7 +160,7 @@ export const blockUser = async (id, blocked, dispatch) => {
     window.location.reload();
   } catch (err) {
     dispatch(blockUserFailure());
-    console.log(err)
+    console.log(err);
   }
 };
 
@@ -182,18 +182,10 @@ export const updateBook = async (book, id, dispatch) => {
   }
 };
 
-
 export const updateUser = async (user, id, dispatch) => {
   dispatch(updateUserStart());
   try {
-    const res = await publicReq.put(`/users/${id}`, user, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
-            ?.currentUser?.accessToken
-        }`,
-      },
-    });
+    const res = await publicReq.put(`/users/${id}`, user);
     dispatch(updateUserSuccess(res.data));
     window.location.reload();
   } catch (err) {

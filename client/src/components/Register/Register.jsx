@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from '../../redux/apiCalls';
-import logo from '../../images/лого.svg';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/apiCalls";
+import logo from "../../images/лого.svg";
 import {
   Button,
   Container,
@@ -10,27 +10,30 @@ import {
   Wrapper,
   Label,
   Image,
-} from '../Login/Login.styled';
+} from "../Login/Login.styled";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [conPass, setConPass] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [conPass, setConPass] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
     if (conPass === password) {
       register(dispatch, { username, password, email });
+      navigate("/");
     } else {
-      alert('wrong password!!!');
+      alert("wrong password!!!");
     }
   };
   return (
     <Container>
       <Wrapper>
-        <img src={logo} alt="" style={{ marginBottom: '1em' }} />
+        <img src={logo} alt="" style={{ marginBottom: "1em" }} />
 
         <Form>
           <Label>Имя</Label>
