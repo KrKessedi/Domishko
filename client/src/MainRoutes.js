@@ -13,7 +13,7 @@ import { Admin, UserProfile } from "./pages";
 import { UpdateBook } from "./components";
 import GenrePage from "./pages/GenrePage/GenrePage";
 import { useDispatch, useSelector } from "react-redux";
-import { getBooks, getUser } from "./redux/apiCalls";
+import { getBooks } from "./redux/apiCalls";
 
 const MainRoutes = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -23,10 +23,6 @@ const MainRoutes = () => {
   useEffect(() => {
     getBooks(dispatch);
   }, [dispatch]);
-
-  useEffect(() => {
-    user?.isAdmin && getUser(dispatch);
-  }, [dispatch, user?.isAdmin]);
 
   return (
     <Routes>

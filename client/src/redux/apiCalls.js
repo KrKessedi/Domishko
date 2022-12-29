@@ -35,21 +35,11 @@ import {
   updateUserSuccess,
 } from "./userSlice";
 
-const BASE_URL = "https://domishka.adaptable.app/";
-// const BASE_URL = "http://localhost:3001/";
-
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
-  ?.currentUser?.accessToken;
+// const BASE_URL = "https://domishka.adaptable.app/";
+const BASE_URL = "http://localhost:3001/";
 
 export const publicReq = axios.create({
   baseURL: BASE_URL,
-});
-
-export const userReq = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    token: `Bearer ${TOKEN}`,
-  },
 });
 
 export const login = async (dispatch, user) => {
@@ -79,17 +69,32 @@ export const Logout = async (dispatch) => {
 export const getUser = async (dispatch) => {
   dispatch(getUserStart());
   try {
-    const res = await userReq.get("/users");
+    const res = await publicReq.get("/users", {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(getUserSuccess(res.data));
   } catch (err) {
     dispatch(getUserFailure());
+    console.log(err);
   }
 };
 
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart());
   try {
-    await userReq.delete(`/users/${id}`);
+    await publicReq.delete(`/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(deleteUserSuccess(id));
   } catch (err) {
     dispatch(deleteUserFailure());
@@ -109,7 +114,14 @@ export const getBooks = async (dispatch) => {
 export const deleteBook = async (id, dispatch) => {
   dispatch(deleteBookStart());
   try {
-    await userReq.delete(`/books/${id}`);
+    await publicReq.delete(`/books/${id}`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(deleteBookSuccess(id));
   } catch (err) {
     dispatch(deleteBookFailure());
@@ -119,7 +131,14 @@ export const deleteBook = async (id, dispatch) => {
 export const addBook = async (book, dispatch) => {
   dispatch(addBookStart());
   try {
-    const res = await userReq.post(`/books`, book);
+    const res = await publicReq.post(`/books`, book, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(addBookSuccess(res.data));
   } catch (err) {
     dispatch(addBookFailure());
@@ -129,19 +148,33 @@ export const addBook = async (book, dispatch) => {
 export const blockUser = async (id, blocked, dispatch) => {
   dispatch(blockUserStart());
   try {
-    const res = await userReq.put(`/users/${id}`, blocked);
+    const res = await publicReq.put(`/users/${id}`, blocked, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(blockUserSuccess(res.data, id));
     window.location.reload();
   } catch (err) {
     dispatch(blockUserFailure());
-    console.log(err);
+    console.log(err)
   }
 };
 
 export const updateBook = async (book, id, dispatch) => {
   dispatch(updateBookStart());
   try {
-    const res = await userReq.put(`/books/${id}`, book);
+    const res = await publicReq.put(`/books/${id}`, book, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(updateBookSuccess(res.data._id, id));
     window.location.reload();
   } catch (err) {
@@ -149,10 +182,18 @@ export const updateBook = async (book, id, dispatch) => {
   }
 };
 
+
 export const updateUser = async (user, id, dispatch) => {
   dispatch(updateUserStart());
   try {
-    const res = await publicReq.put(`/users/${id}`, user);
+    const res = await publicReq.put(`/users/${id}`, user, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+            ?.currentUser?.accessToken
+        }`,
+      },
+    });
     dispatch(updateUserSuccess(res.data));
     window.location.reload();
   } catch (err) {

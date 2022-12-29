@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from "react";
 
 import {
   Box,
@@ -9,29 +9,29 @@ import {
   Right,
   SubTitle,
   Title,
-} from './Chart.styled';
-import { FaUserPlus } from 'react-icons/fa';
-import { MdDownloadForOffline } from 'react-icons/md';
-import CH from '../CH/CH';
-import { userReq } from '../../redux/apiCalls.js';
+} from "./Chart.styled";
+import { FaUserPlus } from "react-icons/fa";
+import { MdDownloadForOffline } from "react-icons/md";
+import CH from "../CH/CH";
+import { publicReq } from "../../redux/apiCalls.js";
 
 const Chart = () => {
   const [userStats, setUserStats] = useState([]);
 
   const MONTHS = useMemo(
     () => [
-      'Янв',
-      'Фев',
-      'Мар',
-      'Апр',
-      'Май',
-      'Июн',
-      'Июл',
-      'Авг',
-      'Сен',
-      'Окт',
-      'Ноя',
-      'Дек',
+      "Янв",
+      "Фев",
+      "Мар",
+      "Апр",
+      "Май",
+      "Июн",
+      "Июл",
+      "Авг",
+      "Сен",
+      "Окт",
+      "Ноя",
+      "Дек",
     ],
     []
   );
@@ -39,13 +39,20 @@ const Chart = () => {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await userReq.get('/users/stats');
+        const res = await publicReq.get("/users/stats", {
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+                ?.currentUser?.accessToken
+            }`,
+          },
+        });
         res.data.map((item) =>
           setUserStats((prev) => [
             ...prev,
             {
               name: MONTHS[item._id - 1],
-              'Активные пользоветели': item.total,
+              "Активные пользоветели": item.total,
             },
           ])
         );

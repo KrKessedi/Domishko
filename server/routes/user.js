@@ -1,10 +1,11 @@
 const User = require("../model/User");
-const { verifyTokenAndAdmin } = require("./verifyJWT");
+const { verifyTokenAndAdmin, verifyTokenAndAuth } = require("./verifyJWT");
+const jwt = require("jsonwebtoken");
 
 const router = require("express").Router();
 
 //UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyTokenAndAuth, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -21,8 +22,18 @@ router.put("/:id", async (req, res) => {
       { new: true }
     );
 
-    console.log(updatedUser);
-    res.status(200).json(updatedUser);
+    const accessToken = jwt.sign(
+      {
+        id: updatedUser._id,
+        isAdmin: updatedUser.isAdmin,
+      },
+      process.env.JWT_SEC,
+      { expiresIn: "10d" }
+    );
+
+    const { password, ...others } = updatedUser._doc;
+
+    res.status(200).json({ ...others, accessToken });
   } catch (err) {
     res.status(500).json(err);
   }
