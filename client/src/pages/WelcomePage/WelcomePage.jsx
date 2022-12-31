@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Flex, Text, Title } from "./Welcome.styled";
+import { Flex } from "./Welcome.styled";
 import Slider from "react-slick";
 import "./Carousel.css";
 
@@ -7,11 +7,9 @@ import LeftArrow from "../../images/Arrow/Vector.svg";
 import RightArrow from "../../images/Arrow/Vector-1.svg";
 import Genre from "../../components/Genre/Genre";
 import Modal from "../../components/Modal/Modal";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
-import { changeGenre } from "../../redux/bookSlice";
 
 export const Container = styled.div`
   width: 100%;
@@ -22,8 +20,6 @@ export const Container = styled.div`
 `;
 
 const WelcomePage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [book, setBook] = useState({});
   let books = useSelector((state) => state.book.books);
@@ -59,8 +55,6 @@ const WelcomePage = () => {
     beforeChange: (prevent, next) => {
       setNextIndex(next);
       setPreventImage(prevent);
-      console.log(prevent);
-      console.log(next);
     },
   };
   return (
@@ -71,23 +65,7 @@ const WelcomePage = () => {
         onModalClose={() => setModal(false)}
       />
       <Flex bottom={"4em"}>
-        <Flex column={"column"} width={"241px"}>
-          <Title bottom={"11px"}>Бестселлеры</Title>
-          <Text bottom={"20px"}>
-            Окунитесь в мир лучших книг в мире по мнению миллионов читателей и
-            решите так ли это на самом деле. <br /> Только утро настало, как
-            читать захотелось.
-          </Text>
-          <Button
-            onClick={() => {
-              dispatch(changeGenre("Бестселлеры"));
-              navigate("/genre");
-            }}
-          >
-            Смотреть
-          </Button>
-        </Flex>
-        <Slider {...setting} style={{ width: "800px", margin: "2em auto 0" }}>
+        <Slider {...setting} style={{ width: "100%", margin: "2em auto 0" }}>
           {resultBooks.map((book, idx) => (
             <div
               onClick={() => {
@@ -112,8 +90,12 @@ const WelcomePage = () => {
           ))}
         </Slider>
       </Flex>
-      <Genre category={"Фантастика"} />
-      <Genre flexDirection={"row-reverse"} category={"Романтика"} />
+      <Genre category={"Бестселлеры"} />
+      <Genre flexDirection={"row-reverse"} category={"Фантастика"} />
+      <Genre category={"Романтика"} />
+      <Genre flexDirection={"row-reverse"} category={"История"} />
+      <Genre category={"Психология"} />
+      <Genre flexDirection={"row-reverse"} category={"Бизнес"} />
     </Container>
   );
 };

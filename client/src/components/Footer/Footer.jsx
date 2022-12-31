@@ -1,29 +1,33 @@
-import React from 'react'
-import { FooterStyled, Text } from './Footer.styled'
-import { Flex } from '../Navbar/Navbar.styled'
-import Facebook from '../../images/Facebook.svg'
-import Instagram from '../../images/Instagram.svg'
-import Twitter from '../../images/Twitter.svg'
+import React from "react";
+import { FooterStyled, Text } from "./Footer.styled";
+import { Flex } from "../Navbar/Navbar.styled";
+import {
+  FaGithubSquare,
+  FaInstagramSquare,
+  FaLinkedin,
+  FaTwitterSquare,
+} from "react-icons/fa";
 
 const Footer = () => {
-	return (
-		<FooterStyled>
-			<Flex>
-				<Text>Все права зарезервированы, 2022</Text>
-				<Flex width={'370px'}>
-					<Flex width={'180px'}>
-						<Text>Контакты</Text>
-						<Text>Вакансии</Text>
-					</Flex>
-					<Flex width={'130px'}>
-						<img src={Instagram} alt='instagram' />
-						<img src={Facebook} alt='facebook' />
-						<img src={Twitter} alt='twitter' />
-					</Flex>
-				</Flex>
-			</Flex>
-		</FooterStyled>
-	)
-}
+  return (
+    <FooterStyled>
+      <Flex>
+        <Text>Все права зарезервированы, 2023</Text>
+        <Flex width={"370px"}>
+          <Flex width={"180px"}>
+            <Text>Контакты</Text>
+            <Text>Вакансии</Text>
+          </Flex>
+          <Flex width={"130px"} style={{ cursor: "pointer", fontSize: "23px" }}>
+            <FaLinkedin />
+            <FaInstagramSquare />
+            <FaGithubSquare />
+            <FaTwitterSquare />
+          </Flex>
+        </Flex>
+      </Flex>
+    </FooterStyled>
+  );
+};
 
-export default Footer
+export default Footer;

@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	width: 93%;
-	margin: 0 auto;
 	font-family: 'Inter', sans-serif;
 `
 
@@ -26,7 +24,7 @@ export const Flex = styled.div`
 export const Text = styled.p`
 	font-size: 16px;
 	font-weight: 500;
-	line-height: 19.36px;
+	line-height: 19px;
 	margin-bottom: ${(props) => props.bottom};
 `
 

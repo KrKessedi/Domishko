@@ -13,11 +13,11 @@ const Genre = ({ flexDirection, category }) => {
 
   let books = useSelector((state) => state.book.books);
   let bookFilter = books.filter((book) => book.categories === category);
-  let resultBooks = bookFilter.slice(0, 4);
+  let resultBooks = bookFilter.slice(0, 6);
 
   return (
     <>
-      <Flex width={"100%"} bottom={"20px"}>
+      <Flex width={"100%"} bottom={"20px"} style={{ marginTop: "40px" }}>
         <Title fontSize={"20px"} fontHeight={"24px"}>
           {category}
         </Title>
@@ -34,7 +34,7 @@ const Genre = ({ flexDirection, category }) => {
         </Title>
       </Flex>
       <Flex column={flexDirection}>
-        <Flex width={"47%"} wrap={"wrap"} height={"360px"}>
+        <Flex wrap={"wrap"} style={{ padding: "0  20px", width: "70%" }}>
           {resultBooks.map((book) => (
             <Book key={book._id} book={book} />
           ))}

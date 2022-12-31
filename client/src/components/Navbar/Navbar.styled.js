@@ -32,8 +32,8 @@ export const NavWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 200px;
-  margin-left: 20px;
+  width: 400px;
+  margin-left: 40px;
 
   svg {
     width: 50px;
@@ -55,8 +55,18 @@ export const Avatar = styled.img`
 `;
 
 export const Title = styled.p`
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  border: 1px solid;
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: 205px;
+  text-align: center;
+
+  &:hover {
+    color: white;
+    background: #ff8c00;
+  }
 `;

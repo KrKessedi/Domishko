@@ -12,6 +12,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
 import { RiAdminLine } from "react-icons/ri";
+import { CgInbox } from "react-icons/cg";
 import { Logout } from "../../redux/apiCalls";
 import { changeGenre } from "../../redux/bookSlice";
 
@@ -68,6 +69,7 @@ const Navbar = () => {
               <Input></Input>
               <NavWrapper>
                 <AiOutlineLogout onClick={handleClick} />
+                <CgInbox />
                 {user?.isAdmin && (
                   <Link to="/admin" style={{ display: "flex" }}>
                     <RiAdminLine />
@@ -84,9 +86,12 @@ const Navbar = () => {
               </NavWrapper>
             </Flex>
           </Flex>
-          <Flex>
-            <Title onClick={() => navigate("/")}>Главная</Title>
+          <Flex style={{ padding: "0 20px" }}>
+            <Title className="navbar" onClick={() => navigate("/")}>
+              Главная
+            </Title>
             <Title
+              className="navbar"
               onClick={() => {
                 navigate("/genre");
                 dispatch(changeGenre("Бестселлеры"));
@@ -95,6 +100,7 @@ const Navbar = () => {
               Бестселлеры
             </Title>
             <Title
+              className="navbar"
               onClick={() => {
                 navigate("/genre");
                 dispatch(changeGenre("Фантастика"));
@@ -103,6 +109,7 @@ const Navbar = () => {
               Фантастика
             </Title>
             <Title
+              className="navbar"
               onClick={() => {
                 navigate("/genre");
                 dispatch(changeGenre("Романтика"));
@@ -111,6 +118,7 @@ const Navbar = () => {
               Романтика
             </Title>
             <Title
+              className="navbar"
               onClick={() => {
                 navigate("/genre");
                 dispatch(changeGenre("История"));
@@ -119,6 +127,7 @@ const Navbar = () => {
               История
             </Title>
             <Title
+              className="navbar"
               onClick={() => {
                 navigate("/genre");
                 dispatch(changeGenre("Психология"));
@@ -127,6 +136,7 @@ const Navbar = () => {
               Психология
             </Title>
             <Title
+              className="navbar"
               onClick={() => {
                 navigate("/genre");
                 dispatch(changeGenre("Бизнес"));

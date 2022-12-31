@@ -26,7 +26,7 @@ const GenrePage = () => {
         <MainBook book={bookFilter[8]} />
         <MainBook book={bookFilter[9]} />
       </Flex>
-      <Flex width={"100%"} wrap={"wrap"} height={"360px"}>
+      <Flex width={"100%"} wrap={"wrap"}>
         {resultBooks.map((book) => (
           <Book key={book._id} book={book} />
         ))}

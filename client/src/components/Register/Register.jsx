@@ -10,8 +10,12 @@ import {
   Wrapper,
   Label,
   Image,
+  Wrap,
+  Title,
+  RegisterLink,
 } from "../Login/Login.styled";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthImage from "../../images/Auth.jpg";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -32,35 +36,44 @@ const Register = () => {
   };
   return (
     <Container>
-      <Wrapper>
-        <img src={logo} alt="" style={{ marginBottom: "1em" }} />
+      <Wrap className="top">
+        <Wrapper>
+          <img src={logo} alt="" style={{ marginBottom: "1em" }} />
+          <Title margin={"2em 0 2em"}>
+            Зарегистрируйтесь в систему, чтобы получить доступ ко всем функциям
+          </Title>
+          <Form>
+            <Label>Имя</Label>
+            <Input
+              placeholder="Напишите свое имя"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Label>Электронная почта</Label>
+            <Input
+              placeholder="Напишите свой адрес электронной почты"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Label>Пароль</Label>
+            <Input
+              placeholder="Напишите свой пароль"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Label>Подтвердите пароль</Label>
+            <Input
+              placeholder="Подтвердите свой пароль"
+              onChange={(e) => setConPass(e.target.value)}
+            />
 
-        <Form>
-          <Label>Имя</Label>
-          <Input
-            placeholder="Имя"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Label>Почта</Label>
-          <Input
-            placeholder="Почта"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Label>Пароль</Label>
-          <Input
-            placeholder="Пароль"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Label>Подтвердите пароль</Label>
-          <Input
-            placeholder="Подтвердите пароль"
-            onChange={(e) => setConPass(e.target.value)}
-          />
-
-          <Button onClick={handleClick}>Создать</Button>
-        </Form>
-      </Wrapper>
-      <Image />
+            <Button onClick={handleClick}>Продолжить</Button>
+          </Form>
+          <RegisterLink>
+            Если у Вас уже есть аккаунт? <Link to="/login">Войти</Link>
+          </RegisterLink>
+        </Wrapper>
+      </Wrap>
+      <Wrap>
+        <Image src={AuthImage} alt="book" />
+      </Wrap>
     </Container>
   );
 };
