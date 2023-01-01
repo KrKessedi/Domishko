@@ -11,10 +11,6 @@ const StaticUsers = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
 
-  useEffect(() => {
-    getUser(dispatch);
-  }, [dispatch]);
-
   const handleDelete = (id) => {
     deleteUser(id, dispatch);
   };
@@ -28,6 +24,10 @@ const StaticUsers = () => {
     };
     blockUser(id, res, dispatch);
   };
+
+  useEffect(() => {
+    getUser(dispatch);
+  }, [dispatch, users]);
 
   const columns = [
     {

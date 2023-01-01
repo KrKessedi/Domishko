@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/apiCalls";
 import logo from "../../images/лого.svg";
 import {
@@ -16,6 +16,7 @@ import {
 } from "../Login/Login.styled";
 import { Link, useNavigate } from "react-router-dom";
 import AuthImage from "../../images/Auth.jpg";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -24,14 +25,15 @@ const Register = () => {
   const [conPass, setConPass] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const state = useSelector((state) => state.user.error);
 
   const handleClick = (e) => {
     e.preventDefault();
     if (conPass === password) {
       register(dispatch, { username, password, email });
-      navigate("/");
+      !state && navigate("/");
     } else {
-      alert("wrong password!!!");
+      toast.error("Пароли не совпадают.");
     }
   };
   return (

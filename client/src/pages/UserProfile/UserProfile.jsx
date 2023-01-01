@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Bottom,
@@ -79,17 +79,14 @@ const UserProfile = () => {
               ...inputs,
               avatar: downloadURL,
             };
-            updateUser(
-              user,
-              currentUser._id,
-
-              dispatch
-            );
+            updateUser(user, currentUser._id, dispatch);
           });
         }
       );
     }
   };
+
+  useEffect(() => {}, [currentUser, dispatch]);
 
   return (
     <Container>

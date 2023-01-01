@@ -48,7 +48,7 @@ const UpdateBook = () => {
 
   useEffect(() => {
     getBooks(dispatch);
-  }, [dispatch]);
+  }, [dispatch, book]);
 
   const handleChange = (e) => {
     setInputs((prev) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Button,
@@ -18,7 +18,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import app from "../../firebase";
-import { addBook } from "../../redux/apiCalls";
+import { addBook, getBooks } from "../../redux/apiCalls";
 import { GiBookmarklet } from "react-icons/gi";
 import { TbLanguage, TbNumbers } from "react-icons/tb";
 import { FaCompass, FaUserEdit } from "react-icons/fa";
@@ -27,16 +27,17 @@ import { RiFileList2Fill } from "react-icons/ri";
 import { BsFileEarmarkImage } from "react-icons/bs";
 
 const CreateBook = () => {
-  const [inputs, setInputs] = useState({
-    categories: "Бестселлеры",
-    language: "Кыргызский",
-  });
+  const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState("Сохранить изменения");
+
+  useEffect(() => {
+    getBooks(dispatch);
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setInputs((prev) => {
-      console.log(prev);
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
@@ -54,7 +55,8 @@ const CreateBook = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
+        setLoaded("Загруска выполнена на " + progress + "%");
+
         switch (snapshot.state) {
           case "paused":
             console.log("Upload is paused");
@@ -207,7 +209,9 @@ const CreateBook = () => {
             placeholder="Cсылка для чтения книги"
           />
         </Inputs>
-        <Button onClick={handleClick}>Сохранить изменения</Button>
+        <Button onClick={handleClick}>
+          {loaded === "Сохранить изменения" ? "Сохранить изменения" : loaded}
+        </Button>
       </InputWrapper>
     </Container>
   );

@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <FooterStyled>
       <Flex>
-        <Text>Все права зарезервированы, 2023</Text>
+        <Text>Все права зарезервированы, 2022-2023</Text>
         <Flex width={"370px"}>
           <Flex width={"180px"}>
             <Text>Контакты</Text>
