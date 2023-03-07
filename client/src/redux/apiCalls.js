@@ -202,7 +202,7 @@ export const addBook = async (book, dispatch) => {
 			isLoading: false,
 			autoClose: 500,
 		})
-		window.location = `http://localhost:3000/admin/book/${res.data._id}`
+		window.location = `https://domishka.netlify.app/admin/book/${res.data._id}`
 	} catch (err) {
 		dispatch(addBookFailure())
 		toast.update(add, {
